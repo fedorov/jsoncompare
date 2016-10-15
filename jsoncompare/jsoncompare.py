@@ -144,14 +144,14 @@ def _are_same(expected, actual, ignore_value_of_keys, ignore_missing_keys=False)
 
     return False, Stack().append(StackItem('Unhandled Type: {0}'.format(type(expected)), expected, actual))
 
-def are_same(original_a, original_b, ignore_list_order_recursively=False, ignore_value_of_keys=[]):
+def are_same(original_a, original_b, ignore_list_order_recursively=False, ignore_missing_keys=False, ignore_value_of_keys=[]):
     if ignore_list_order_recursively:
         a = _bottom_up_sort(original_a)
         b = _bottom_up_sort(original_b)
     else:
         a = original_a
         b = original_b
-    return _are_same(a, b, ignore_value_of_keys)
+    return _are_same(a, b, ignore_value_of_keys, ignore_missing_keys)
 
 
 def contains(expected_original, actual_original, ignore_list_order_recursively=False, ignore_value_of_keys=[]):
